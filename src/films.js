@@ -27,6 +27,17 @@ function moviesAverageOfDirector(array, director) {
 
 // Exercise 4:  Alphabetic order by title 
 function orderAlphabetically(array) {
+  console.log("orderAlphabetically");
+    let titulosPeliculas = array.map(movie => movie.title.toLowerCase());//devuelve un array con solo los títulos
+    console.table(titulosPeliculas);
+    //las pongo en minusculas para que ordene alfabeticamente correctamente, que no ponga ET antes que El niño 
+    //las ordeno alfabéticamente:
+    titulosPeliculas.sort();
+    //solo mostrar las 20 primeras peliculas 
+    let primerasPeliculas = titulosPeliculas.filter((element, index) => index < 20);
+
+    console.table(primerasPeliculas);
+    return primerasPeliculas;
 
 }
 
