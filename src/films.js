@@ -1,13 +1,15 @@
 // Exercise 1: Get the array of all directors.
 function getAllDirectors(array) {
-  let result = movies.map(pelicula => pelicula.director);
-  result.sort();
+  let result = array.map(pelicula => pelicula.director);
+   result.sort();
   return result;
+  //no entiendo porque en el test me sale error en la igualdad de longitudes
+  //del array movies y result
 }
 
 // Exercise 2: Get the films of a certain director
-function getMoviesFromDirector(array, director) {
-  let peliculasDirector = array.filter(movie => movie.director === director);
+function getMoviesFromDirector(director) {
+  let peliculasDirector = movies.filter(movie => movie.director === director);
   //console.table(peliculasDirector);
   return peliculasDirector;
 }
@@ -36,13 +38,13 @@ function getMoviesFromProperty(array, propiedad, value) {//OK
 
 
 // Exercise 3: Calculate the average of the films of a given director.
-function moviesAverageOfDirector(array, director) {
-  let peliculasDirector = getMoviesFromDirector(array, director);
-  let puntuacionesFiltradas = peliculasDirector.filter(movie => movie.score != undefined);//para array solo con las puntuaciones .map, si quisiera un array 
+function moviesAverageOfDirector(array) {
+  //let peliculasDirector = getMoviesFromDirector(array, director);
+  let puntuacionesFiltradas = array.filter(movie => movie.score != undefined);//para array solo con las puntuaciones .map, si quisiera un array 
   // con objetos .filter
   let long = puntuacionesFiltradas.length;
   let total = puntuacionesFiltradas.reduce((acc, movie) => { return acc += parseFloat(movie.score) }, 0);
-  let media = parseFloat((total / long).toFixed(2));
+     let media = parseFloat((total / long).toFixed(2));
 
   return media;
 
@@ -77,7 +79,7 @@ function orderAlphabetically(array) {
 }
 
 // Exercise 5: Order by year, ascending
-function orderByYear() {
+function orderByYear(array) {
   //no son dos pasos uno detrás del otro, es en caso de que el año sea el mismo entonces ordena alfabéticamente    
   let peliculasOrdenadas = array.sort((a, b) => {
     if (a.year > b.year) { return 1 }
@@ -93,16 +95,16 @@ function orderByYear() {
 }
 
 // Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory() {
+function moviesAverageByCategory(categoria) {
   console.log("moviesAverageByCategory");
-  let peliculasGenero = getMoviesFromProperty(array, "genre", category);//getMoviesFromProperty(movies, "genre", value);
+  let peliculasGenero = getMoviesFromProperty(movies, "genre", categoria);//getMoviesFromProperty(movies, "genre", value);
   let media = moviesAverage(peliculasGenero);
   return media;
 
 }
 
 // Exercise 7: Modify the duration of movies to minutes
-function hoursToMinutes() {
+function hoursToMinutes(array) {
   console.log("hoursToMinutes");
   let peliculasEnMinutos = array.filter(item => item.duration = generarArrayTiempo(item.duration));
   //console.table(peliculasEnMinutos);
@@ -128,8 +130,8 @@ function generarArrayTiempo(string) {//OK, PERO HAY QUE SIMPLIFICAR
 
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
-  onsole.log("bestFilmOfYear");
+function bestFilmOfYear(year) {
+  console.log("bestFilmOfYear");
     // let peliculasAño = getMoviesFromProperty(movies, "year", año);
     let peliculasAño = movies.filter((movie) => movie.year === año);
    // console.table(peliculasAño);
