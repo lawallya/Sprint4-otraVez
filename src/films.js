@@ -12,6 +12,29 @@ function getMoviesFromDirector(array, director) {
   return peliculasDirector;
 }
 
+//ex6, modificacion del ejercio 2
+function getMoviesFromProperty(array, propiedad, value) {//OK
+  console.log("getMoviesFromProperty");
+  let x = propiedad;
+  let valor = value;
+  console.log(x);
+  console.log(valor);
+      switch (x) {
+      case "director": let peliculasDirector = array.filter((movie) => movie.director === value);
+          console.table(peliculasDirector);
+          return peliculasDirector;
+          break;
+      case "genre": let peliculasGenero = array.filter(movie => movie.genre.includes(value));
+          console.table(peliculasGenero);
+          return peliculasGenero;
+          break;
+      case "year": let peliculasAño = array.filter((movie) => movie.year === value);
+          console.table(peliculasAño);
+          return peliculasAño;
+  }
+}
+
+
 // Exercise 3: Calculate the average of the films of a given director.
 function moviesAverageOfDirector(array, director) {
   let peliculasDirector = getMoviesFromDirector(array, director);
@@ -24,6 +47,18 @@ function moviesAverageOfDirector(array, director) {
     return media;
 
 }
+
+//ex 6, modificacion del ejercicio 3
+function moviesAverage(array) {//aqui le llega ya el array de peliculas de objetos de un director dado
+  let puntuacionesFiltradas = array.map(movie => movie.score).filter(item => item !== undefined); //genero un array 
+  //de puntuaciones válidas
+  let total = puntuacionesFiltradas.reduce((ac, item) => { return ac += item });
+  let long = puntuacionesFiltradas.length;
+  let media = parseFloat((total / long).toFixed(2));
+  console.log(media);
+  return media;
+}
+
 
 // Exercise 4:  Alphabetic order by title 
 function orderAlphabetically(array) {
@@ -59,6 +94,10 @@ return peliculasOrdenadas;
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory() {
+  console.log("moviesAverageByCategory");
+  let peliculasGenero = getMoviesFromProperty(array, "genre", category);//getMoviesFromProperty(movies, "genre", value);
+  let media = moviesAverage(peliculasGenero);
+     return media;
 
 }
 
