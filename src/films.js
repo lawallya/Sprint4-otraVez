@@ -1,10 +1,9 @@
 // Exercise 1: Get the array of all directors.
 function getAllDirectors(array) {
   let result = array.map(pelicula => pelicula.director);
-   result.sort();
+   //result.sort();
   return result;
-  //no entiendo porque en el test me sale error en la igualdad de longitudes
-  //del array movies y result
+  
 }
 
 // Exercise 2: Get the films of a certain director
