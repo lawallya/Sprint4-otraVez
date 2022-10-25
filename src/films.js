@@ -143,10 +143,10 @@ function generarArrayTiempo(string) {//OK, PERO HAY QUE SIMPLIFICAR
 
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear(year) {
+function bestFilmOfYear(array, año) {
   console.log("bestFilmOfYear");
   // let peliculasAño = getMoviesFromProperty(movies, "year", año);
-  let peliculasAño = movies.filter((movie) => movie.year === año);
+  let peliculasAño = array.filter((movie) => movie.year === año);
   // console.table(peliculasAño);
   let mejorPelicula = peliculasAño.sort((a, b) => { return b.score - a.score }); //ordena en orden descendente
   //console.table(mejorPelicula);
