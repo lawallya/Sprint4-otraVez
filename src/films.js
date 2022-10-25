@@ -51,7 +51,7 @@ function moviesAverageOfDirector(array, director) {
 
 //ex 6, modificacion del ejercicio 3
 function moviesAverage(array) {//aqui le llega ya el array de peliculas de objetos de un director dado
-  let puntuacionesFiltradas = array.map(movie => movie.score).filter(item => item !== undefined); //genero un array 
+  let puntuacionesFiltradas = array.map(movie => movie.score).filter(item => item !== ''); //genero un array 
   //de puntuaciones válidas
   let total = puntuacionesFiltradas.reduce((ac, item) => { return ac += item });
   let long = puntuacionesFiltradas.length;
@@ -108,9 +108,9 @@ function orderByYear(array) {
 }
 
 // Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory(categoria) {
+function moviesAverageByCategory(array, categoria) {
   console.log("moviesAverageByCategory");
-  let peliculasGenero = getMoviesFromProperty(movies, "genre", categoria);//getMoviesFromProperty(movies, "genre", value);
+  let peliculasGenero = getMoviesFromProperty(array, "genre", categoria);//getMoviesFromProperty(movies, "genre", value);
   let media = moviesAverage(peliculasGenero);
   return media;
 
