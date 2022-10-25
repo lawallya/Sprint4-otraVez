@@ -1,9 +1,9 @@
 // Exercise 1: Get the array of all directors.
 function getAllDirectors(array) {
   let result = array.map(pelicula => pelicula.director);
-   //result.sort();
+  //result.sort();
   return result;
-  
+
 }
 
 // Exercise 2: Get the films of a certain director
@@ -43,7 +43,7 @@ function moviesAverageOfDirector(array, director) {
   // con objetos .filter
   let long = puntuacionesFiltradas.length;
   let total = puntuacionesFiltradas.reduce((acc, movie) => { return acc += parseFloat(movie.score) }, 0);
-     let media = parseFloat((total / long).toFixed(2));
+  let media = parseFloat((total / long).toFixed(2));
 
   return media;
 
@@ -80,7 +80,10 @@ function orderAlphabetically(array) {
 // Exercise 5: Order by year, ascending
 function orderByYear(array) {
   //no son dos pasos uno detrás del otro, es en caso de que el año sea el mismo entonces ordena alfabéticamente    
-  let peliculasOrdenadas = array.sort((a, b) => {
+  //no puedo utilizar sort directamente porque se mantiene el mismo array. tiene que ser map que genera uno nuevo
+  let peliculasPreparadas = array.map(element => ({ ...element }));
+  console.table(peliculasPreparadas);
+  let peliculasOrdenadas = peliculasPreparadas.sort((a, b) => {
     if (a.year > b.year) { return 1 }
     if (a.year === b.year) {
       let ac = (a.title > b.title) ? 1 : -1;
@@ -88,8 +91,19 @@ function orderByYear(array) {
     }//estoy suponiendo que no hay 2 peliculas que se llamen igual
     if (a.year < b.year) { return -1 }
   });
-  console.table(peliculasOrdenadas);
-  return peliculasOrdenadas;
+  return peliculasOrdenadas
+
+  /* array.sort((a, b) => {
+     if (a.year > b.year) { return 1 }
+     if (a.year === b.year) {
+       let ac = (a.title > b.title) ? 1 : -1;
+       return ac;
+     }//estoy suponiendo que no hay 2 peliculas que se llamen igual
+     if (a.year < b.year) { return -1 }
+   });
+   console.table(peliculasOrdenadas);
+   return peliculasOrdenadas;*/
+
 
 }
 
@@ -131,16 +145,16 @@ function generarArrayTiempo(string) {//OK, PERO HAY QUE SIMPLIFICAR
 // Exercise 8: Get the best film of a year
 function bestFilmOfYear(year) {
   console.log("bestFilmOfYear");
-    // let peliculasAño = getMoviesFromProperty(movies, "year", año);
-    let peliculasAño = movies.filter((movie) => movie.year === año);
-   // console.table(peliculasAño);
-    let mejorPelicula = peliculasAño.sort((a, b) => { return b.score - a.score }); //ordena en orden descendente
-    //console.table(mejorPelicula);
-    let maxPuntuacion = mejorPelicula[0].score;
-    //console.log(maxPuntuacion);
-    let mejoresPeliculas = mejorPelicula.filter(movie => movie.score === maxPuntuacion);
+  // let peliculasAño = getMoviesFromProperty(movies, "year", año);
+  let peliculasAño = movies.filter((movie) => movie.year === año);
+  // console.table(peliculasAño);
+  let mejorPelicula = peliculasAño.sort((a, b) => { return b.score - a.score }); //ordena en orden descendente
+  //console.table(mejorPelicula);
+  let maxPuntuacion = mejorPelicula[0].score;
+  //console.log(maxPuntuacion);
+  let mejoresPeliculas = mejorPelicula.filter(movie => movie.score === maxPuntuacion);
 
-    return mejoresPeliculas;
+  return mejoresPeliculas;
 
 }
 
