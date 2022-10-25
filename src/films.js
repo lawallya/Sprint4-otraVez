@@ -118,12 +118,21 @@ function moviesAverageByCategory(array, categoria) {
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes(array) {
-  console.log("hoursToMinutes");
-  let peliculasEnMinutos = array.filter(item => item.duration = generarArrayTiempo(item.duration));
-  //console.table(peliculasEnMinutos);
+//para cada pelicula calculo en tiempo en minutos preguntando si duracion ha salido con 2 items, en ese caso
+// traduzco a minutos directamente, si no tiene 2 items, entonces tengo que saber si es el de horas o minutos, 
+// si tiene horas multiplico por 60, si no saco directamente el resultado en minutos. Y en el nuevo objeto sera 
+// igual al antiguo pero la duracion será la nueva.
+  let peliculasEnMinutos = array.map(element => {
+    let tiempoFinal = (element.duration.split(" ").length == 2) ? (parseInt(element.duration.split(" ")[0])*60 + parseInt(element.duration.split(" ")[1])) :
+    (element.duration.includes("h"))?parseInt(element.duration.split(" ")[0])*60:parseInt(element.duration.split(" ")[0]);
+    element = {...element};
+    element.duration = tiempoFinal;
+    return element;
+  });
+ 
   return peliculasEnMinutos
 }
-function generarArrayTiempo(string) {//OK, PERO HAY QUE SIMPLIFICAR
+/*function generarArrayTiempo(string) {//OK, PERO HAY QUE SIMPLIFICAR
   console.log("generarArrayTiempo");
 
   let tiempoFinal = 0;
