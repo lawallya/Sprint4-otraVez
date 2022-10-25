@@ -7,8 +7,8 @@ function getAllDirectors(array) {
 }
 
 // Exercise 2: Get the films of a certain director
-function getMoviesFromDirector(director) {
-  let peliculasDirector = movies.filter(movie => movie.director === director);
+function getMoviesFromDirector(array, director) {
+  let peliculasDirector = array.filter(movie => movie.director === director);
   //console.table(peliculasDirector);
   return peliculasDirector;
 }
